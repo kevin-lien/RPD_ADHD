@@ -12,7 +12,7 @@ dependencies = [
   "mani_skill @ git+https://github.com/haosulab/ManiSkill@v3.0.0b15",
   "torch",
   "tyro",
-  "agents @ git+https://github.com/juelg/agents.git@ef546365d37c75a07e8b6e1e8d3a8eb5cced1bbd",
+  "agents @ git+https://github.com/juelg/agents.git@e7cc1a225223c58e45587d81aeff668e8554639f",
   "tensorboard",
 ]
 readme = "README.md"
