@@ -14,6 +14,8 @@ dependencies = [
   "tyro",
   "agents @ git+https://github.com/juelg/agents.git@e7cc1a225223c58e45587d81aeff668e8554639f",
   "tensorboard",
+  "setuptools<81",
+  "six",
 ]
 readme = "README.md"
 maintainers = [{ name = "Tobias Jülg", email = "tobias.juelg@utn.de" }]
