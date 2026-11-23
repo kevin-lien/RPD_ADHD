@@ -5,26 +5,26 @@ import re
 import shlex
 
 # ============================================================
-# 要改的設定都在這一區
+# All settings to edit are in this block
 # ============================================================
-use_rpd = False  # False = 純 PPO baseline（不需要 VLA）；True = RPD（需要 Octo 環境）
+use_rpd = False  # False = pure PPO baseline (no VLA needed); True = RPD (needs the Octo env)
 # env options are "LiftPegUpright-v1", "PegInsertionSide-v1", "PickCube-v1", "PlugCharger-v1", "PokeCube-v1", "PullCube-v1", "PullCubeTool-v1", "PushCube-v1", "RollBall-v1", "StackCube-v1"
 env = "PickCube-v1"
 loss_type = "mse"  # other options: "l1" (l1 loss), "bc" (behavior cloning loss)
-vla_type = "octo"  # 我們用 Octo；other options: "octo-base", "openvla", "openvla-base"
+vla_type = "octo"  # we use Octo; other options: "octo-base", "openvla", "openvla-base"
 seed = 0  # this should be varied for mass experiments
 checkpoint_fmt = None  # PPO checkpoint path string with {seed} and {task} placeholders, e.g. "checkpoints/{task}/ckpt_{seed}.pt"
 sparse = False
 note = "first test run"
 
-# 小規模測試：先確認整個流程跑得通，再改成 False 跑論文規模
+# Quick test: first check that the pipeline runs, then set to False for the paper-scale run
 QUICK_TEST = True
 
-# wandb：還沒設定帳號前先關掉，只用 tensorboard（結果在 runs/ 資料夾）
+# wandb: off until an account is set up; results are written to tensorboard (runs/ folder)
 use_wandb = False
-wandb_entity = None  # 有 wandb 帳號後填上，例如 "rpd-adhd"
+wandb_entity = None  # fill in once you have a wandb account, e.g. "rpd-adhd"
 
-# Octo 那個 conda 環境的 python 路徑，用 `conda env list` 查
+# python path of the Octo conda env; look it up with `conda env list`
 vla_conda_path = os.path.expanduser("~/miniconda3/envs/rpd_octo/bin/python")
 # ============================================================
 
@@ -51,7 +51,7 @@ else:
 
 if QUICK_TEST:
     num_envs, num_eval_envs, total_timesteps, num_minibatches, eval_freq = 16, 16, 200_000, 8, 5
-else:  # 論文原始設定
+else:  # original paper settings
     num_envs, num_eval_envs, total_timesteps, num_minibatches, eval_freq = 128, 500, 30_000_000, 48, 10
 
 algo = (
